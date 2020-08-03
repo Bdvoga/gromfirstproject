@@ -2,6 +2,8 @@ package lesson6;
 
 public class Car {
 
+    // Test
+
     //1 filds - поля или свойства
     public int price;
     int yearOfManufacturing;
