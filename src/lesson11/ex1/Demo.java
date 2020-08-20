@@ -43,15 +43,12 @@ public class Demo {
 
         //1. requestRooms
         for (Room el : controller.requestRooms(5, 1, "C1", "H1")) {
-            if (el != null)
-                System.out.println(el.getId());
-            else System.out.println("null");
+            System.out.println(el.getId());
         }
 
         //2. check
         for (Room el : controller.check(tripAdvisorAPI, googleAPI)) {
-            if (el != null)
-                System.out.println(el.getId());
+            System.out.println(el.getId());
         }
 
         //3. cheapestRoom()

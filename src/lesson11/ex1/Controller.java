@@ -55,7 +55,7 @@ public class Controller {
         System.out.println("Controller.check() was called...");
 
         Room[] a1 = api1.getAll();
-        Room[] roomsCheck = new Room[api1.getAll().length];
+        Room[] firstArray = new Room[api1.getAll().length];
         int count = 0;
 
         for (int i = 0; i < a1.length; i++) {
@@ -65,9 +65,24 @@ public class Controller {
                         a1[i].getHotelName() == a2[j].getHotelName() &&
                         a1[i].getCityName() == a2[j].getCityName() &&
                         a1[i].getPrice() == a2[j].getPrice()) {
-                    roomsCheck[count] = a1[i];
+                    firstArray[count] = a1[i];
                     count++;
                 }
+            }
+        }
+
+        count = 0; // Счетчик не null ячеек
+        for (Room el : firstArray) {
+            if (el != null)
+                count++;
+        }
+
+        Room[] roomsCheck = new Room[count];
+        int count1 = 0; // Счетчик результирующего массива без нал ячеек
+        for (Room el : firstArray) {
+            if (el != null) {
+                roomsCheck[count1] = el;
+                count1++;
             }
         }
 
