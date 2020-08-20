@@ -1,17 +1,17 @@
-package lesson9.Ex1ClassUser;
+package lesson9.Ex3UserRepository;
 
 public class User {
-    private long id; // поля
+    private long id;
     private String name;
     private String sessionId;
 
-    public User(long id, String name, String sessionId) { // конструктор
+    public User(long id, String name, String sessionId) {
         this.id = id;
         this.name = name;
         this.sessionId = sessionId;
     }
 
-    public long getId() { // Getter - разрешаем доставать значение
+    public long getId() {
         return id;
     }
 
@@ -22,4 +22,5 @@ public class User {
     public String getSessionId() {
         return sessionId;
     }
+
 }
