@@ -34,9 +34,8 @@ public class GoogleAPI implements API {
                 count1++;
             }
         }
-
         System.out.println("GoogleAPI  was called...");
-        System.out.println(roomsGoogleAPI.length);
+
         return roomsGoogleAPI;
     }
 

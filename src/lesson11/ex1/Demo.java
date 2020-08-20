@@ -45,7 +45,7 @@ public class Demo {
         for (Room el : controller.requestRooms(5, 1, "C1", "H1")) {
             if (el != null)
                 System.out.println(el.getId());
-            //else System.out.println("null");
+            else System.out.println("null");
         }
 
         //2. check

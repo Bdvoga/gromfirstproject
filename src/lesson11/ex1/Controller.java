@@ -13,21 +13,38 @@ public class Controller {
     public Room[] requestRooms(int price, int persons, String city, String hotel) {
         System.out.println("Controller.requestRooms() was called");
 
-        Room[] roomsRequestRooms = new Room[apis[0].findRooms(price, persons, city, hotel).length * 3];
+        int apisLength = apis[0].getAll().length;
         int apis0Length = apis[0].findRooms(price, persons, city, hotel).length;
+        int apis1Length = apis[1].findRooms(price, persons, city, hotel).length;
+        Room[] firstArray = new Room[apisLength * 3];
 
         for (int i = 0; i < apis0Length; i++) {
-            roomsRequestRooms[i] = apis[0].findRooms(price, persons, city, hotel)[i];
+            firstArray[i] = apis[0].findRooms(price, persons, city, hotel)[i];
         }
 
         for (int i = 0; i < apis[1].findRooms(price, persons, city, hotel).length; i++) {
-            roomsRequestRooms[i + apis0Length] =
+            firstArray[i + apis0Length] =
                     apis[1].findRooms(price, persons, city, hotel)[i];
         }
 
         for (int i = 0; i < apis[2].findRooms(price, persons, city, hotel).length; i++) {
-            roomsRequestRooms[i + apis0Length * 2] =
+            firstArray[i + apis0Length + apis1Length] =
                     apis[2].findRooms(price, persons, city, hotel)[i];
+        }
+
+        int count = 0; // Счетчик не null ячеек
+        for (Room el : firstArray) {
+            if (el != null)
+                count++;
+        }
+
+        Room[] roomsRequestRooms = new Room[count];
+        int count1 = 0; // Счетчик результирующего массива без нал ячеек
+        for (Room el : firstArray) {
+            if (el != null) {
+                roomsRequestRooms[count1] = el;
+                count1++;
+            }
         }
 
         return roomsRequestRooms;
