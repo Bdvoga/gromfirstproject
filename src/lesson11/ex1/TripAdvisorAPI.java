@@ -20,24 +20,9 @@ public class TripAdvisorAPI implements API {
                 firstArray[i] = rooms[i];
             }
         }
-
-        int count = 0; // Счетчик не null ячеек
-        for (Room el : firstArray) {
-            if (el != null)
-                count++;
-        }
-
-        Room[] roomsTripAdvisorAPI = new Room[count];
-        int count1 = 0; // Счетчик результирующего массива без нал ячеек
-        for (Room el : firstArray) {
-            if (el != null) {
-                roomsTripAdvisorAPI[count1] = el;
-                count1++;
-            }
-        }
-
         System.out.println("TripAdvisorAPI  was called...");
-        return roomsTripAdvisorAPI;
+
+        return deleteNull(firstArray);
     }
 
     @Override
@@ -48,5 +33,25 @@ public class TripAdvisorAPI implements API {
         }
 
         return roomsGetAll;
+    }
+
+    public Room[] deleteNull(Room[] firstArray) {
+
+        int count = 0; // Счетчик не null ячеек
+        for (Room el : firstArray) {
+            if (el != null)
+                count++;
+        }
+
+        Room[] arrayWithoutNull = new Room[count];
+        int count1 = 0; // Счетчик результирующего массива без нал ячеек
+        for (Room el : firstArray) {
+            if (el != null) {
+                arrayWithoutNull[count1] = el;
+                count1++;
+            }
+        }
+
+        return arrayWithoutNull;
     }
 }
