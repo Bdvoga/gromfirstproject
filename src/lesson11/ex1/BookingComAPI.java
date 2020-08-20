@@ -1,5 +1,7 @@
 package lesson11.ex1;
 
+import static lesson11.ex1.Controller.deleteNull;
+
 public class BookingComAPI implements API {
     private Room[] rooms;
 
@@ -9,17 +11,17 @@ public class BookingComAPI implements API {
 
     @Override
     public Room[] findRooms(int price, int persons, String city, String hotel) {
-        Room[] firstArray = new Room[rooms.length];
+        Room[] roomsBookingComAPI = new Room[rooms.length];
         for (int i = 0; i < rooms.length; i++) {
             if ((rooms[i].getPrice() >= price - 100 && rooms[i].getPrice() <= price + 100) &&
                     rooms[i].getPerson() == persons &&
                     rooms[i].getCityName() == city &&
                     rooms[i].getHotelName() == hotel)
-                firstArray[i] = rooms[i];
+                roomsBookingComAPI[i] = rooms[i];
         }
         System.out.println("BookingComAPI was called...");
 
-        return deleteNull(firstArray);
+        return deleteNull(roomsBookingComAPI);
     }
 
     @Override
@@ -30,25 +32,5 @@ public class BookingComAPI implements API {
         }
 
         return roomsGetAll;
-    }
-
-    public Room[] deleteNull(Room[] firstArray) {
-
-        int count = 0; // Счетчик не null ячеек
-        for (Room el : firstArray) {
-            if (el != null)
-                count++;
-        }
-
-        Room[] arrayWithoutNull = new Room[count];
-        int count1 = 0; // Счетчик результирующего массива без нал ячеек
-        for (Room el : firstArray) {
-            if (el != null) {
-                arrayWithoutNull[count1] = el;
-                count1++;
-            }
-        }
-
-        return arrayWithoutNull;
     }
 }

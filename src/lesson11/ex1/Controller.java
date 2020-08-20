@@ -13,7 +13,7 @@ public class Controller {
     public Room[] requestRooms(int price, int persons, String city, String hotel) {
         System.out.println("Controller.requestRooms() was called");
 
-        Room[] firstArray = new Room[apis[0].getAll().length * 3];
+        Room[] roomsRequestRooms = new Room[apis[0].getAll().length * 3];
         int shift0 = apis[0].findRooms(price, persons, city, hotel).length;
         int shift1 = apis[1].findRooms(price, persons, city, hotel).length;
         int k = 0;
@@ -26,11 +26,11 @@ public class Controller {
                 k = 1;
 
             for (int j = 0; j < apis[i].findRooms(price, persons, city, hotel).length; j++) {
-                firstArray[j + shift0 * k + shift1 * l] = apis[i].findRooms(price, persons, city, hotel)[j];
+                roomsRequestRooms[j + shift0 * k + shift1 * l] = apis[i].findRooms(price, persons, city, hotel)[j];
             }
         }
 
-        return deleteNull(firstArray);
+        return deleteNull(roomsRequestRooms);
     }
 
     //2. check()
@@ -38,7 +38,7 @@ public class Controller {
         System.out.println("Controller.check() was called...");
 
         Room[] a1 = api1.getAll();
-        Room[] firstArray = new Room[api1.getAll().length];
+        Room[] roomsCheck = new Room[api1.getAll().length];
         int count = 0;
 
         for (int i = 0; i < a1.length; i++) {
@@ -48,13 +48,13 @@ public class Controller {
                         a1[i].getHotelName() == a2[j].getHotelName() &&
                         a1[i].getCityName() == a2[j].getCityName() &&
                         a1[i].getPrice() == a2[j].getPrice()) {
-                    firstArray[count] = a1[i];
+                    roomsCheck[count] = a1[i];
                     count++;
                 }
             }
         }
 
-        return deleteNull(firstArray);
+        return deleteNull(roomsCheck);
     }
 
     //3. cheapestRoom()
