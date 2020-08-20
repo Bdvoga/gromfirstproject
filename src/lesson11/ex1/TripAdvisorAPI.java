@@ -9,7 +9,7 @@ public class TripAdvisorAPI implements API {
 
     @Override
     public Room[] findRooms(int price, int persons, String city, String hotel) {
-        Room[] roomsTripAdvisorAPI = new Room[rooms.length];
+        Room[] firstArray = new Room[rooms.length];
 
         for (int i = 0; i < rooms.length; i++) {
             if (rooms[i].getPrice() == price &&
@@ -17,7 +17,22 @@ public class TripAdvisorAPI implements API {
                     rooms[i].getCityName() == city &&
                     rooms[i].getHotelName() == hotel) {
 
-                roomsTripAdvisorAPI[i] = rooms[i];
+                firstArray[i] = rooms[i];
+            }
+        }
+
+        int count = 0; // Счетчик не null ячеек
+        for (Room el : firstArray) {
+            if (el != null)
+                count++;
+        }
+
+        Room[] roomsTripAdvisorAPI = new Room[count];
+        int count1 = 0; // Счетчик результирующего массива без нал ячеек
+        for (Room el : firstArray) {
+            if (el != null) {
+                roomsTripAdvisorAPI[count1] = el;
+                count1++;
             }
         }
 

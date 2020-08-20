@@ -6,37 +6,34 @@ import java.util.Date;
 public class Demo {
 
     public static void main(String[] args) {
-        Room room1 = new Room(1,5, 1, new Date(), "C1", "H1");
-        Room room2 = new Room(2,3, 2, new Date(), "C1", "H1");
-        Room room3 = new Room(3,15, 3, new Date(), "C1", "H1");
-        Room room4 = new Room(4,20, 4, new Date(), "C1", "H1");
-        Room room5 = new Room(5,4, 5, new Date(), "C1", "H1");
+        Room room1 = new Room(1,1, 1, new Date(), "C1", "H1");
+        Room room2 = new Room(2,15, 1, new Date(), "C1", "H1");
+        Room room3 = new Room(3,15, 10, new Date(), "C1", "H1");
+        Room room4 = new Room(4,200, 4, new Date(), "C1", "H1");
+        Room room5 = new Room(5,4, 10, new Date(), "C1", "H1");
 
         Room[] rooms = {room1, room2, room3, room4, room5};
-
+//--------------------------------------------
         BookingComAPI bookingComAPI = new BookingComAPI(rooms);
 
-        for (Room el : bookingComAPI.findRooms(10, 10, "C1", "H1")) {
-            if (el != null)
-                System.out.println(el.getId() + " " + el.getPrice());
-        }
+        for (Room el : bookingComAPI.findRooms(10, 10, "C1", "H1"))
+            System.out.println(el.getId() + " " + el.getPrice());
+
         System.out.println();
 
-//------------------
+//-------------------------------------------
         TripAdvisorAPI tripAdvisorAPI = new TripAdvisorAPI(rooms);
 
-        for (Room el : tripAdvisorAPI.findRooms(200, 1, "C1", "H1")) {
-            if (el != null)
-                System.out.println(el.getId() + " " + el.getPrice());
-        }
+        for (Room el : tripAdvisorAPI.findRooms(200, 3, "C1", "H1"))
+            System.out.println(el.getId() + " " + el.getPrice());
+
         System.out.println();
-//------------------------
+//---------------------------------------------
         GoogleAPI googleAPI = new GoogleAPI(rooms);
 
-        for (Room el : googleAPI.findRooms(15, 1, "C1", "H1")) {
-            if (el != null)
-                System.out.println(el.getId() + " " + el.getPrice());
-        }
+        for (Room el : googleAPI.findRooms(15, 1, "C1", "H1"))
+            System.out.println(el.getId() + " " + el.getPrice());
+
         System.out.println();
 //-----------------------------
         //Controller
@@ -48,7 +45,7 @@ public class Demo {
         for (Room el : controller.requestRooms(5, 1, "C1", "H1")) {
             if (el != null)
                 System.out.println(el.getId());
-            else System.out.println("null");
+            //else System.out.println("null");
         }
 
         //2. check
@@ -58,7 +55,6 @@ public class Demo {
         }
 
         //3. cheapestRoom()
-        //controller.cheapestRoom();
         System.out.println(controller.cheapestRoom().getPrice());
 
     }
