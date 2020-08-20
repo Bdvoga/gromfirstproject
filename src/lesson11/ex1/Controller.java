@@ -30,22 +30,7 @@ public class Controller {
             }
         }
 
-        int count = 0; // Счетчик не null ячеек
-        for (Room el : firstArray) {
-            if (el != null)
-                count++;
-        }
-
-        Room[] roomsRequestRooms = new Room[count];
-        int count1 = 0; // Счетчик результирующего массива без нал ячеек
-        for (Room el : firstArray) {
-            if (el != null) {
-                roomsRequestRooms[count1] = el;
-                count1++;
-            }
-        }
-
-                return roomsRequestRooms;
+        return deleteNull(firstArray);
     }
 
     //2. check()
@@ -69,22 +54,7 @@ public class Controller {
             }
         }
 
-        count = 0; // Счетчик не null ячеек
-        for (Room el : firstArray) {
-            if (el != null)
-                count++;
-        }
-
-        Room[] roomsCheck = new Room[count];
-        int count1 = 0; // Счетчик результирующего массива без нал ячеек
-        for (Room el : firstArray) {
-            if (el != null) {
-                roomsCheck[count1] = el;
-                count1++;
-            }
-        }
-
-        return roomsCheck;
+        return deleteNull(firstArray);
     }
 
     //3. cheapestRoom()
@@ -102,6 +72,26 @@ public class Controller {
         }
 
         return roomCheapestRoom;
+    }
+
+    public static Room[] deleteNull(Room[] firstArray) {
+
+        int count = 0; // Счетчик не null ячеек
+        for (Room el : firstArray) {
+            if (el != null)
+                count++;
+        }
+
+        Room[] arrayWithoutNull = new Room[count];
+        int count1 = 0; // Счетчик результирующего массива без нал ячеек
+        for (Room el : firstArray) {
+            if (el != null) {
+                arrayWithoutNull[count1] = el;
+                count1++;
+            }
+        }
+
+        return arrayWithoutNull;
     }
 
 }
