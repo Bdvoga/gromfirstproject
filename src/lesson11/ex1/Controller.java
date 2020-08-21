@@ -18,6 +18,7 @@ public class Controller {
         int shift1 = apis[1].findRooms(price, persons, city, hotel).length;
         int k = 0;
         int l = 0;
+        int countWithoutNull = 0;
 
         for (int i = 0; i < 3; i++) {
             if (i == 1)
@@ -27,10 +28,11 @@ public class Controller {
 
             for (int j = 0; j < apis[i].findRooms(price, persons, city, hotel).length; j++) {
                 roomsRequestRooms[j + shift0 * k + shift1 * l] = apis[i].findRooms(price, persons, city, hotel)[j];
+                countWithoutNull++;
             }
         }
 
-        return deleteNull(roomsRequestRooms);
+        return deleteNull(roomsRequestRooms, countWithoutNull);
     }
 
     //2. check()
@@ -40,6 +42,7 @@ public class Controller {
         Room[] a1 = api1.getAll();
         Room[] roomsCheck = new Room[api1.getAll().length];
         int count = 0;
+        int countWithoutNull = 0;
 
         for (int i = 0; i < a1.length; i++) {
             Room[] a2 = api2.findRooms(a1[i].getPrice(), a1[i].getPerson(), a1[i].getCityName(), a1[i].getHotelName());
@@ -50,11 +53,12 @@ public class Controller {
                         a1[i].getPrice() == a2[j].getPrice()) {
                     roomsCheck[count] = a1[i];
                     count++;
+                    countWithoutNull++;
                 }
             }
         }
 
-        return deleteNull(roomsCheck);
+        return deleteNull(roomsCheck, countWithoutNull);
     }
 
     //3. cheapestRoom()
@@ -74,15 +78,9 @@ public class Controller {
         return roomCheapestRoom;
     }
 
-    public static Room[] deleteNull(Room[] firstArray) {
+    public static Room[] deleteNull(Room[] firstArray, int countWithoutNull) {
 
-        int count = 0; // Счетчик не null ячеек
-        for (Room el : firstArray) {
-            if (el != null)
-                count++;
-        }
-
-        Room[] arrayWithoutNull = new Room[count];
+        Room[] arrayWithoutNull = new Room[countWithoutNull];
         int count1 = 0; // Счетчик результирующего массива без нал ячеек
         for (Room el : firstArray) {
             if (el != null) {

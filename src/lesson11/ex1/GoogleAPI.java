@@ -12,19 +12,20 @@ public class GoogleAPI implements API {
     @Override
     public Room[] findRooms(int price, int persons, String city, String hotel) {
         Room[] roomsGoogleAPI = new Room[rooms.length];
+        int countWithoutNull = 0;
 
         for (int i = 0; i < rooms.length; i++) {
             if (rooms[i].getPrice() == price &&
                     rooms[i].getPerson() == persons &&
                     rooms[i].getCityName() == city &&
-                    rooms[i].getHotelName() == hotel)
-
+                    rooms[i].getHotelName() == hotel) {
                 roomsGoogleAPI[i] = rooms[i];
+                countWithoutNull++;
+            }
         }
-
         System.out.println("GoogleAPI  was called...");
 
-        return deleteNull(roomsGoogleAPI);
+        return deleteNull(roomsGoogleAPI, countWithoutNull);
     }
 
     @Override

@@ -12,16 +12,20 @@ public class BookingComAPI implements API {
     @Override
     public Room[] findRooms(int price, int persons, String city, String hotel) {
         Room[] roomsBookingComAPI = new Room[rooms.length];
+        int countWithoutNull = 0;
+
         for (int i = 0; i < rooms.length; i++) {
             if ((rooms[i].getPrice() >= price - 100 && rooms[i].getPrice() <= price + 100) &&
                     rooms[i].getPerson() == persons &&
                     rooms[i].getCityName() == city &&
-                    rooms[i].getHotelName() == hotel)
+                    rooms[i].getHotelName() == hotel) {
                 roomsBookingComAPI[i] = rooms[i];
+                countWithoutNull++;
+            }
         }
         System.out.println("BookingComAPI was called...");
 
-        return deleteNull(roomsBookingComAPI);
+        return deleteNull(roomsBookingComAPI, countWithoutNull);
     }
 
     @Override

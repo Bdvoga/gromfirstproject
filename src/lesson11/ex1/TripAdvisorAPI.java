@@ -12,19 +12,20 @@ public class TripAdvisorAPI implements API {
     @Override
     public Room[] findRooms(int price, int persons, String city, String hotel) {
         Room[] roomsTripAdvisorAPI = new Room[rooms.length];
+        int countWithoutNull = 0;
 
         for (int i = 0; i < rooms.length; i++) {
             if (rooms[i].getPrice() == price &&
                     (rooms[i].getPerson() <= persons + 1 && rooms[i].getPerson() >= persons - 1) &&
                     rooms[i].getCityName() == city &&
                     rooms[i].getHotelName() == hotel) {
-
                 roomsTripAdvisorAPI[i] = rooms[i];
+                countWithoutNull++;
             }
         }
         System.out.println("TripAdvisorAPI  was called...");
 
-        return deleteNull(roomsTripAdvisorAPI);
+        return deleteNull(roomsTripAdvisorAPI, countWithoutNull);
     }
 
     @Override
